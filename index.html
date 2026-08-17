@@ -1,0 +1,315 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Sarker NextGenAI Technologies Inc. — AI Automation & Digital Marketing</title>
+<style>
+  :root{
+    --bg:#0A0F1C;
+    --panel:#111A2E;
+    --panel-2:#0D1526;
+    --line:#22304A;
+    --text:#E6ECF5;
+    --muted:#8B99B5;
+    --accent:#4FD8C4;
+    --accent-2:#F5A623;
+    --mono:'JetBrains Mono', 'Courier New', monospace;
+  }
+  *{box-sizing:border-box; margin:0; padding:0;}
+  body{
+    background:var(--bg);
+    color:var(--text);
+    font-family:'Inter', -apple-system, Segoe UI, sans-serif;
+    line-height:1.6;
+    -webkit-font-smoothing:antialiased;
+  }
+  @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Space+Grotesk:wght@500;600;700&family=JetBrains+Mono:wght@400;500&display=swap');
+
+  .wrap{max-width:1040px; margin:0 auto; padding:0 28px;}
+
+  /* Node-line signature background */
+  .nodes{position:absolute; inset:0; overflow:hidden; pointer-events:none; opacity:0.5;}
+
+  header.hero{
+    position:relative;
+    padding:90px 0 70px;
+    border-bottom:1px solid var(--line);
+    overflow:hidden;
+  }
+  .eyebrow{
+    font-family:var(--mono);
+    font-size:12.5px;
+    letter-spacing:0.14em;
+    text-transform:uppercase;
+    color:var(--accent);
+    display:flex;
+    align-items:center;
+    gap:10px;
+    margin-bottom:22px;
+  }
+  .eyebrow::before{content:''; width:7px; height:7px; border-radius:50%; background:var(--accent); box-shadow:0 0 10px var(--accent);}
+  h1{
+    font-family:'Space Grotesk', sans-serif;
+    font-weight:700;
+    font-size:clamp(34px,5.4vw,58px);
+    line-height:1.06;
+    letter-spacing:-0.015em;
+    max-width:820px;
+  }
+  h1 span{color:var(--accent);}
+  .hero-sub{
+    margin-top:22px;
+    font-size:17px;
+    color:var(--muted);
+    max-width:600px;
+  }
+  .hero-meta{
+    margin-top:36px;
+    display:flex;
+    flex-wrap:wrap;
+    gap:28px;
+    font-family:var(--mono);
+    font-size:13px;
+    color:var(--muted);
+  }
+  .hero-meta b{color:var(--text); font-weight:500;}
+
+  .stat-row{
+    display:grid;
+    grid-template-columns:repeat(4,1fr);
+    border-top:1px solid var(--line);
+    border-bottom:1px solid var(--line);
+  }
+  .stat{
+    padding:26px 28px;
+    border-right:1px solid var(--line);
+  }
+  .stat:last-child{border-right:none;}
+  .stat .num{
+    font-family:'Space Grotesk', sans-serif;
+    font-size:30px;
+    font-weight:700;
+    color:var(--accent);
+  }
+  .stat .label{font-size:12.5px; color:var(--muted); margin-top:4px;}
+
+  section{padding:64px 0;}
+  .section-head{
+    display:flex;
+    align-items:baseline;
+    justify-content:space-between;
+    margin-bottom:34px;
+    border-bottom:1px solid var(--line);
+    padding-bottom:16px;
+  }
+  .section-head h2{
+    font-family:'Space Grotesk', sans-serif;
+    font-size:24px;
+    font-weight:600;
+  }
+  .section-head .tag{font-family:var(--mono); font-size:12px; color:var(--muted);}
+
+  .grid{display:grid; grid-template-columns:repeat(2,1fr); gap:1px; background:var(--line); border:1px solid var(--line);}
+  .card{background:var(--panel); padding:26px 28px;}
+  .card h3{font-family:'Space Grotesk',sans-serif; font-size:17px; font-weight:600; margin-bottom:10px; display:flex; gap:10px; align-items:center;}
+  .card h3 .dot{color:var(--accent); font-family:var(--mono); font-size:13px;}
+  .card p{font-size:14.5px; color:var(--muted);}
+
+  .case-list{display:flex; flex-direction:column; border:1px solid var(--line);}
+  .case{
+    display:grid;
+    grid-template-columns:120px 1fr 160px;
+    gap:20px;
+    padding:24px 28px;
+    border-bottom:1px solid var(--line);
+    align-items:start;
+  }
+  .case:last-child{border-bottom:none;}
+  .case .cat{font-family:var(--mono); font-size:11.5px; color:var(--accent-2); text-transform:uppercase; letter-spacing:0.06em; padding-top:2px;}
+  .case h3{font-family:'Space Grotesk',sans-serif; font-size:16.5px; font-weight:600; margin-bottom:6px;}
+  .case p{font-size:14px; color:var(--muted);}
+  .case .stack{font-family:var(--mono); font-size:11.5px; color:var(--muted); text-align:right;}
+
+  .stack-strip{
+    display:flex; flex-wrap:wrap; gap:10px; padding:24px 0;
+  }
+  .pill{
+    font-family:var(--mono); font-size:12.5px;
+    padding:7px 14px; border:1px solid var(--line); border-radius:20px;
+    color:var(--muted);
+  }
+
+  footer{
+    border-top:1px solid var(--line);
+    padding:50px 0 60px;
+  }
+  .cta{
+    background:var(--panel);
+    border:1px solid var(--line);
+    border-radius:6px;
+    padding:36px 32px;
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    flex-wrap:wrap;
+    gap:20px;
+  }
+  .cta h2{font-family:'Space Grotesk',sans-serif; font-size:22px; margin-bottom:8px;}
+  .cta p{color:var(--muted); font-size:14px;}
+  .contact-lines{font-family:var(--mono); font-size:13.5px; color:var(--text); display:flex; flex-direction:column; gap:6px; align-items:flex-end;}
+  .contact-lines a{color:var(--accent); text-decoration:none;}
+  .contact-lines a:hover{text-decoration:underline;}
+  .foot-note{margin-top:26px; font-size:12px; color:var(--muted); font-family:var(--mono); text-align:center;}
+
+  @media (max-width:720px){
+    .stat-row{grid-template-columns:repeat(2,1fr);} 
+    .stat:nth-child(2){border-right:none;}
+    .grid{grid-template-columns:1fr;}
+    .case{grid-template-columns:1fr; gap:8px;}
+    .case .stack{text-align:left;}
+    .cta{flex-direction:column; align-items:flex-start;}
+    .contact-lines{align-items:flex-start;}
+  }
+</style>
+</head>
+<body>
+
+<header class="hero">
+  <div class="wrap">
+    <div class="eyebrow">Sarker NextGenAI Technologies Inc. — Metro Manila, Philippines</div>
+    <h1>AI automation systems that run your <span>store, chats, and workflows</span> while you sleep.</h1>
+    <p class="hero-sub">We design and ship AI chatbots, n8n automation pipelines, and business dashboards for e-commerce brands and SMEs across the Philippines — built to save hours, not just look good in a slide.</p>
+    <div class="hero-meta">
+      <div><b>Founder</b> — Md. Rezaul Sarker</div>
+      <div><b>Based</b> — Pasay City, Metro Manila</div>
+      <div><b>Focus</b> — AI Automation · Chatbots · E-commerce Ops · Marketing</div>
+    </div>
+  </div>
+</header>
+
+<div class="wrap">
+  <div class="stat-row">
+    <div class="stat"><div class="num">13+</div><div class="label">Platforms integrated (Shopee, Lazada, TikTok Shop, Messenger, Telegram &amp; more)</div></div>
+    <div class="stat"><div class="num">5</div><div class="label">Production n8n workflows shipped in one automation package</div></div>
+    <div class="stat"><div class="num">8</div><div class="label">Modules in a full AI business-management system design</div></div>
+    <div class="stat"><div class="num">100+</div><div class="label">Project builds across AI, marketing, e-commerce &amp; dev work</div></div>
+  </div>
+</div>
+
+<div class="wrap">
+
+  <section>
+    <div class="section-head">
+      <h2>What we build</h2>
+      <div class="tag">/// services</div>
+    </div>
+    <div class="grid">
+      <div class="card">
+        <h3><span class="dot">01</span> AI Sales &amp; Support Agents</h3>
+        <p>Messenger, Telegram and website chatbots that quote prices, track orders, handle sizing and returns — trained on your actual catalog and tone.</p>
+      </div>
+      <div class="card">
+        <h3><span class="dot">02</span> E-commerce Automation</h3>
+        <p>n8n pipelines syncing inventory, orders and messaging across Shopee, Lazada, TikTok Shop and Shopify so nothing gets managed twice.</p>
+      </div>
+      <div class="card">
+        <h3><span class="dot">03</span> Business Command Centres</h3>
+        <p>Single-dashboard views of logistics, CRM, sales and content — built for owners who are done checking six different tabs a day.</p>
+      </div>
+      <div class="card">
+        <h3><span class="dot">04</span> Content &amp; Growth Systems</h3>
+        <p>30-day content calendars, social posting workflows and AI-assisted copy pipelines that keep your feed active without eating your week.</p>
+      </div>
+    </div>
+  </section>
+
+  <section>
+    <div class="section-head">
+      <h2>Selected work</h2>
+      <div class="tag">/// case files</div>
+    </div>
+    <div class="case-list">
+      <div class="case">
+        <div class="cat">Chatbot</div>
+        <div>
+          <h3>AI Messenger Sales Agent</h3>
+          <p>Built an always-on Facebook Messenger agent for an e-commerce fashion brand — handling greetings, pricing, order status, sizing and returns, with live admin alerts routed to Telegram.</p>
+        </div>
+        <div class="stack">n8n · Meta API · Telegram</div>
+      </div>
+      <div class="case">
+        <div class="cat">Automation</div>
+        <div>
+          <h3>Multi-Platform Store Automation Package</h3>
+          <p>Delivered five import-ready n8n workflows unifying Telegram, Shopee, Facebook and Lazada listings, plus a 30-day content calendar and a reusable AI agent prompt system.</p>
+        </div>
+        <div class="stack">n8n · REST APIs · GPT/LLM</div>
+      </div>
+      <div class="case">
+        <div class="cat">Dashboard</div>
+        <div>
+          <h3>Business Command Centre</h3>
+          <p>Custom operations dashboard unifying cross-border logistics, vehicle rental, and marketplace shop management into a single view for a Philippines-based trading business.</p>
+        </div>
+        <div class="stack">HTML · Data viz</div>
+      </div>
+      <div class="case">
+        <div class="cat">Proposal</div>
+        <div>
+          <h3>AI-Powered Business Management System</h3>
+          <p>Authored an 8-module autonomous business management proposal — from inventory intelligence to customer engagement — for a home &amp; living goods company.</p>
+        </div>
+        <div class="stack">Strategy · DOCX/PDF</div>
+      </div>
+      <div class="case">
+        <div class="cat">Omnichannel</div>
+        <div>
+          <h3>Zetpy + n8n Commerce Layer</h3>
+          <p>Designing an operational hub syncing inventory, orders and products across Shopify, Shopee, Lazada and TikTok Shop, with an AI automation layer running on top.</p>
+        </div>
+        <div class="stack">Zetpy · n8n · LLM routing</div>
+      </div>
+    </div>
+  </section>
+
+  <section>
+    <div class="section-head">
+      <h2>Stack we work in</h2>
+      <div class="tag">/// tools</div>
+    </div>
+    <div class="stack-strip">
+      <div class="pill">n8n</div>
+      <div class="pill">OpenAI / OpenRouter</div>
+      <div class="pill">Meta Messenger API</div>
+      <div class="pill">Telegram Bot API</div>
+      <div class="pill">Shopee / Lazada / TikTok Shop APIs</div>
+      <div class="pill">Zapier</div>
+      <div class="pill">Google Workspace</div>
+      <div class="pill">HTML / JS Dashboards</div>
+      <div class="pill">Zetpy</div>
+    </div>
+  </section>
+
+</div>
+
+<footer>
+  <div class="wrap">
+    <div class="cta">
+      <div>
+        <h2>Have a store or workflow that needs to run itself?</h2>
+        <p>Let's map out what's eating your time and automate it.</p>
+      </div>
+      <div class="contact-lines">
+        <span>Md. Rezaul Sarker — Founder &amp; CEO</span>
+        <a href="mailto:info@sarkernextgenai.com">info@sarkernextgenai.com</a>
+        <a href="https://www.sarkernextgenai.com" target="_blank">www.sarkernextgenai.com</a>
+        <span>WhatsApp: +63 995 779 3053</span>
+      </div>
+    </div>
+    <div class="foot-note">SARKER NEXTGENAI TECHNOLOGIES INC. — PASAY CITY, METRO MANILA, PHILIPPINES</div>
+  </div>
+</footer>
+
+</body>
+</html>
